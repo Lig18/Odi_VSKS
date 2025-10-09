@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вступить в отряд - Одинцовский отряд ВСКС</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../scripts/style.css">
+    <link rel="icon" type="image/png" href="../photos/logo_vsks.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html"><img src="../photos/logo_vsks.png" alt="Логотип ВСКС"></a>
+            </div>
+            <div class="header-title">Одинцовский отряд ВСКС</div>
+            <!-- <nav id="mainNav"></nav> УДАЛЕНО! -->
+        </div>
+    </header>
+    <main class="page-content">
+        <section class="page-header">
+            <h1>Стань участником отряда</h1>
+            <p>Присоединяйся к команде профессиональных спасателей и добровольцев</p>
+        </section>
+        <section class="join-info">
+            <h2>Что даёт участие в отряде?</h2>
+            <div class="benefits">
+                <div class="benefit">
+                    <h3>🎓 Профессиональное обучение</h3>
+                    <p>Навыки первой помощи и спасательных работ</p>
+                </div>
+                <div class="benefit">
+                    <h3>🤝 Опыт работы в команде</h3>
+                    <p>Лидерство и экстремальные тренировки</p>
+                </div>
+                <div class="benefit">
+                    <h3>📜 Сертификаты и награды</h3>
+                    <p>Официальные документы и награды</p>
+                </div>
+                <div class="benefit">
+                    <h3>🌟 Личностный рост</h3>
+                    <p>Ответственность, смелость, готовность помочь</p>
+                </div>
+            </div>
+        </section>
+        <section class="application-section">
+            <h2>Заявка на вступление</h2>
+            <form class="application-form">
+                <!-- ...оставьте без изменений содержимое формы... -->
+                <div class="form-row">
+                    <div class="form-group"><label for="lastName">Фамилия *</label><input type="text" id="lastName" name="lastName" required></div>
+                    <div class="form-group"><label for="firstName">Имя *</label><input type="text" id="firstName" name="firstName" required></div>
+                    <div class="form-group"><label for="middleName">Отчество</label><input type="text" id="middleName" name="middleName"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label for="birthDate">Дата рождения *</label><input type="date" id="birthDate" name="birthDate" required></div>
+                    <div class="form-group"><label for="gender">Пол *</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Выберите</option>
+                            <option value="male">Мужской</option>
+                            <option value="female">Женский</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group"><label for="university">Учебное заведение *</label>
+                    <input type="text" id="university" name="university" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label for="faculty">Факультет/Специальность</label><input type="text" id="faculty" name="faculty"></div>
+                    <div class="form-group"><label for="course">Курс *</label>
+                        <select id="course" name="course" required>
+                            <option value="">Выберите курс</option>
+                            <option value="1">1 курс</option>
+                            <option value="2">2 курс</option>
+                            <option value="3">3 курс</option>
+                            <option value="4">4 курс</option>
+                            <option value="5">5 курс</option>
+                            <option value="magistr">Магистратура</option>
+                            <option value="postgrad">Аспирантура</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label for="phone">Телефон *</label>
+                        <input type="tel" id="phone" name="phone" required></div>
+                    <div class="form-group"><label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required></div>
+                </div>
+                <div class="form-group"><label for="motivation">Мотивация *</label>
+                    <textarea id="motivation" name="motivation" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Подать заявку</button>
+            </form>
+        </section>
+        <section class="feedback-section">
+            <h2>Обратная связь</h2>
+            <p>Есть вопросы? Напишите нам!</p>
+            <form class="feedback-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="feedbackName">Имя</label>
+                        <input type="text" id="feedbackName" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="feedbackEmail">Email</label>
+                        <input type="email" id="feedbackEmail" name="email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="feedbackMessage">Сообщение *</label>
+                    <textarea id="feedbackMessage" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn">Отправить сообщение</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-logo-section">
+                <img src="../photos/logo_vsks.png" alt="Логотип отряда">
+                <a href="https://vsks.ru/" target="_blank" rel="noopener"><img src="../photos/logo_vsks2.png" alt="ВСКС" class="logo-circle"></a>
+            </div>
+            <div class="footer-contacts">
+                <p>г. Одинцово, Московская область<br>info@vsks-odintsovo.ru<br>+7 (977) 963-71-66</p>
+            </div>
+            <div class="footer-socnet">
+                <a href="https://vk.com/vsksmoro_odintsovo" target="_blank" aria-label="VK">VK</a>
+                <a href="https://t.me/odin_vsks" target="_blank" aria-label="Telegram">Telegram</a>
+            </div>
+        </div>
+        <div class="footer-down">
+            © Одинцовский отряд ВСКС, 2025
+        </div>
+    </footer>
+    <script>
+    /* УДАЛИ загрузку menu.html! */
+    // fetch('../navigation/menu.html')
+    //     .then(r => r.text())
+    //     .then(html => { document.getElementById('mainNav').innerHTML = html; });
+    </script>
+    <script src="../scripts/script.js"></script>
+</body>
+</html>
