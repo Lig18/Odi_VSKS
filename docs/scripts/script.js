@@ -264,24 +264,10 @@ function setupGalleryLightbox() {
     images.forEach((img, idx) => img.onclick = () => openLightbox(idx));
 }
 
-// ---- Мобильное бургер-меню ----
-function setupMobileSidebar() {
-    const sidebarToggle = document.getElementById('sidebarToggle');
-    const mobileSidebar = document.getElementById('mobileSidebar');
-    if (!sidebarToggle || !mobileSidebar) return;
-    sidebarToggle.onclick = function () {
-        mobileSidebar.classList.toggle('open');
-    };
-    mobileSidebar.onclick = function(e) {
-        if (e.target === mobileSidebar) mobileSidebar.classList.remove('open');
-    };
-}
-
 // --- Инициализация при загрузке ---
 document.addEventListener('DOMContentLoaded', () => {
     initAuthModals();
     setupBenefitsScroller();
     if (document.getElementById('photoCarousel')) setupCarousel('photoCarousel');
     setupGalleryLightbox();
-    setupMobileSidebar();
 });
