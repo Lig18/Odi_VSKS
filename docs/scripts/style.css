@@ -556,5 +556,82 @@ footer {
     .application-form label{font-size: .97em;}
 }
 
+/* Мобильная адаптация для экранов до 700px */
+@media (max-width: 700px) {
+  body {
+    font-size: 14px;
+  }
+  .container {
+    padding: 0 12px;
+    max-width: 100%;
+  }
+  header, footer {
+    padding: 12px 15px;
+  }
+  .header-container {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 8px 10px;
+  }
+  .header-title {
+    font-size: 1.1em;
+  }
+  .logo img, .main-header-logo img {
+    height: 36px;
+    margin-right: 10px;
+  }
+  .main-nav {
+    gap: 15px;
+    font-size: 1em;
+  }
+  .nav-btn {
+    padding: 7px 15px;
+    font-size: 0.95em;
+  }
+  .btn, .btn-primary {
+    padding: 10px 20px;
+    font-size: 1em;
+    min-width: 80px;
+  }
+  .application-section {
+    padding: 20px 15px;
+  }
+  .application-form .form-row {
+    flex-direction: column;
+    gap: 14px;
+  }
+  .application-form .form-group {
+    flex: 1 1 100%;
+  }
+  .carousel-slide img {
+    height: 200px;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+    gap: 14px;
+  }
+  .gallery-card img {
+    height: 100px;
+  }
+}
+
+/* Очень маленькие телефоны до 400px */
+@media (max-width: 400px) {
+  .header-title {
+    font-size: 1em;
+  }
+  .nav-btn {
+    padding: 6px 10px;
+    font-size: 0.9em;
+  }
+  .btn, .btn-primary {
+    font-size: 0.9em;
+    min-width: 70px;
+    padding: 8px 18px;
+  }
+  .application-section h2 {
+    font-size: 1.4em;
+  }
+}
 
 
