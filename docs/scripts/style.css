@@ -555,123 +555,195 @@ footer {
     .application-form .form-row { gap:12px;}
     .application-form label{font-size: .97em;}
 }
-
-/* Общие адаптивные настройки для телефонов (до 768px ширины) */
-@media (max-width: 768px) {
-  body { font-size: 14px; line-height: 1.4; }
-  .container { padding: 0 15px; max-width: 100%; }
-  header, footer { padding: 10px 15px; }
-  .main-header-title { font-size: 1.1em; letter-spacing: 0.04em; }
-  .logo img, .main-header-logo img { height: 40px; margin-right: 12px; }
-  .main-nav { gap: 14px; font-size: 1em; }
-  .nav-btn { padding: 6px 10px; font-size: 0.95em; }
-  .btn, .btn-primary { padding: 10px 21px; font-size: 1em; min-width: 80px; }
-
-  .application-form .form-row { flex-direction: column; gap: 15px; }
-  .application-form .form-group { flex: 1 1 100%; }
-  .application-section { padding: 25px 15px; }
-
-  .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 15px; }
-  .gallery-card img { height: 100px; }
-  .gallery-caption { font-size: 0.95em; padding: 8px 5px 12px 5px; }
-
-  .carousel-slide img { height: 180px; }
-
-  .footer-inner, .header-container {
-    grid-template-columns: 1fr !important;
-    text-align: center;
-    padding: 10px 15px;
-    gap: 15px;
+/* Мобильная адаптация для экранов до 700px */
+@media (max-width: 700px) {
+  body {
+    font-size: 14px;
   }
-  .footer-logo-section, .footer-socnet { justify-content: center; }
-  .footer-logo-section img,
-  .footer-logo-section .logo-circle {
-    width: 54px; height: 54px;
-    min-width: 54px; min-height: 54px;
-    max-width: 54px; max-height: 54px;
+  .container {
+    padding: 0 12px;
+    max-width: 100%;
+  }
+  header, footer {
+    padding: 12px 15px;
+  }
+  .header-container {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 8px 10px;
+  }
+  .header-title {
+    font-size: 1.1em;
+  }
+  .logo img, .main-header-logo img {
+    height: 36px;
     margin-right: 10px;
   }
-}
-
-/* Очень маленькие экраны до 400px */
-@media (max-width: 400px) {
-  .header-title { font-size: 1em; }
-  .nav-btn { padding: 6px 8px; font-size: 0.9em; }
-  .btn, .btn-primary { font-size: 0.9em; min-width: 70px; padding: 8px 18px; }
-  .application-section h2 { font-size: 1.4em; }
-}
-
-@media (max-width: 768px) {
-  .mobile-sidebar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 0;
-    background: linear-gradient(99deg,#0f2a5a 90%,#ffe000 130%);
-    box-shadow: -2px 0 32px #0f2a5a22;
-    z-index: 12000;
-    transition: width 0.23s cubic-bezier(.6,.1,.7,1.1), opacity 0.19s;
-    overflow: hidden;
-    opacity: 1;
+  .main-nav {
+    gap: 15px;
+    font-size: 1em;
   }
-  .mobile-sidebar.open {
-    width: 220px;
-    opacity: 1;
+  .nav-btn {
+    padding: 7px 15px;
+    font-size: 0.95em;
   }
-  .sidebar-toggle {
-    position: fixed;
-    top: 18px;
-    right: 20px;
-    z-index: 12200;
-    background: #ffe000;
-    color: #0f2a5a;
-    font-size: 2.5em;
-    border: none;
-    border-radius: 14px;
-    padding: 9px 18px;
-    box-shadow: 0 4px 13px #133b7b18;
-    cursor: pointer;
-    transition: background 0.16s, transform 0.1s;
+  .btn, .btn-primary {
+    padding: 10px 20px;
+    font-size: 1em;
+    min-width: 80px;
   }
-  .sidebar-toggle:active,
-  .sidebar-toggle:hover {
-    background: #ff9500;
-    color: #fff;
-    transform: scale(1.07);
+  .application-section {
+    padding: 20px 15px;
   }
-  .sidebar-menu {
-    display: flex;
+  .application-form .form-row {
     flex-direction: column;
-    margin-top: 70px;
-    gap: 22px;
-    align-items: flex-start;
-    padding: 25px 18px;
+    gap: 14px;
   }
-  .sidebar-btn {
-    background: linear-gradient(90deg,#ffe000 60%,#fff6b0 120%);
-    color: #0f2a5a;
-    font-family: 'Montserrat',sans-serif;
-    font-weight: 700;
-    font-size: 1.22em;
-    border-radius: 17px;
-    padding: 11px 22px;
-    text-decoration: none;
-    transition: background 0.16s, color 0.16s, box-shadow 0.16s;
-    box-shadow: 0 3px 12px #ffe0002c;
-    margin-bottom: 4px;
-    margin-right: 0;
+  .application-form .form-group {
+    flex: 1 1 100%;
   }
-  .sidebar-btn:hover {
-    background: linear-gradient(90deg,#ff9500 50%,#ffe000 100%);
+  .carousel-slide img {
+    height: 200px;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+    gap: 14px;
+  }
+  .gallery-card img {
+    height: 100px;
+  }
+}
+
+/* Очень маленькие телефоны до 400px */
+@media (max-width: 400px) {
+  .header-title {
+    font-size: 1em;
+  }
+  .nav-btn {
+    padding: 6px 10px;
+    font-size: 0.9em;
+  }
+  .btn, .btn-primary {
+    font-size: 0.9em;
+    min-width: 70px;
+    padding: 8px 18px;
+  }
+  .application-section h2 {
+    font-size: 1.4em;
+  }
+}
+
+@media (max-width: 700px) {
+  .header-container,
+  .footer-inner,
+  main {
+    padding: 0 10px;
+  }
+  .header-title {
+    font-size: 1.13rem;
+    text-align: center;
+    margin-top: 4px;
+  }
+  nav ul,
+  .main-menu ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding-top: 10px;
+  }
+  .main-menu ul li a,
+  nav ul li a {
+    width: 100%;
+    text-align: center;
+    padding: 13px 0;
+    border-radius: 10px;
+    font-size: 1.11em;
+    background: var(--primary-color);
     color: #fff;
-    box-shadow: 0 8px 24px #ffe0004f;
+    box-shadow: 0 2px 10px rgba(19,59,123,0.08);
+  }
+  .main-menu ul li a:hover,
+  nav ul li a:hover {
+    background: var(--accent-color);
+    color: var(--primary-color);
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 9px;
+    margin-top: 12px;
+    justify-items: center;
+  }
+  .gallery-grid img {
+    width: 90vw;
+    max-width: 135px;
+    height: 80px;
+    border-radius: 9px;
+  }
+  .card,
+  form {
+    max-width: 100%;
+    padding: 12px 6px;
+    border-radius: 12px;
+    font-size: 1.07em;
+  }
+  form label,
+  form input,
+  form textarea,
+  form button {
+    font-size: 1.06em;
+    width: 100%;
+  }
+  form button {
+    border-radius: 13px;
+    padding: 12px 0;
+    margin-top: 9px;
+  }
+  footer,
+  .footer-inner {
+    text-align: center;
+    flex-direction: column;
+    gap: 14px;
+    padding: 18px 2px;
+  }
+  .footer-logo-section,
+  .footer-contacts,
+  .footer-socnet {
+    flex-direction: column;
+    align-items: center;
+    gap: 11px;
+  }
+  .footer-logo-section img,
+  .logo-circle {
+    height: 38px;
+    width: 38px;
+    margin: 0 auto 8px auto;
+  }
+  .footer-down {
+    margin-top: 14px;
+    font-size: 1em;
   }
 }
-@media (min-width: 769px) {
-  .mobile-sidebar,
-  .sidebar-toggle {
-    display: none !important;
-    opacity: 0;
+
+@media (max-width: 450px) {
+  .header-title {
+    font-size: 0.97em;
+    margin-top: 9px;
+    line-height: 1.08;
+  }
+  nav ul,
+  .main-menu ul {
+    gap: 6px;
+  }
+  .main-menu ul li a,
+  nav ul li a {
+    font-size: 0.97em;
+    padding: 10px 0;
+  }
+  .gallery-grid img {
+    height: 48px;
+    width: 98vw;
+    max-width: 75px;
   }
 }
+
+
