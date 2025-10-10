@@ -1,74 +1,181 @@
-@media (max-width: 768px) {
-  .mobile-sidebar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 0;
-    background: linear-gradient(99deg,#0f2a5a 90%,#ffe000 130%);
-    box-shadow: -2px 0 32px #0f2a5a22;
-    z-index: 12000;
-    transition: width 0.23s cubic-bezier(.6,.1,.7,1.1), opacity 0.19s;
-    overflow: hidden;
-    opacity: 1;
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Одинцовский отряд ВСКС</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="scripts/style.css">
+    <link rel="icon" type="image/png" href="photos/logo_vsks.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="fixed-main-header" id="mainHeader">
+  <div class="header-bar">
+    <a href="index.html" class="main-header-logo">
+      <img src="photos/logo_vsks.png" alt="ВСКС">
+      <span class="main-header-title">Одинцовский отряд ВСКС</span>
+    </a>
+    <nav class="main-nav">
+      <a href="news.html" class="nav-btn">📄 Новости</a>
+      <a href="gallery.html" class="nav-btn">📷 Галерея</a>
+      <a href="achievements.html" class="nav-btn">🏆 Достижения</a>
+      <a href="join.html" class="nav-btn">🙋 Вступить</a>
+    </nav>
+  </div>
+</header>
+<main>
+    <section class="vsks-hero">
+        <div class="vsks-hero-overlay"></div>
+        <div class="vsks-hero-content">
+            <h1>Мы спасатели,<br>мы добровольцы!</h1>
+            <p>Всё ради жизни и безопасности.<br>Присоединяйся к движению!</p>
+            <a href="join.html" class="btn hero-btn">Стать участником</a>
+        </div>
+    </section>
+    <section class="carousel-block">
+        <div class="container">
+            <h2 class="carousel-title">Яркие моменты</h2>
+            <div class="carousel" id="photoCarousel">
+                <button class="carousel-arrow prev" aria-label="Назад">❮</button>
+                <div class="carousel-track-wrapper">
+                    <div class="carousel-track">
+                        <div class="carousel-slide"><img src="photos/Foto1.jpg" alt="Тренировка"></div>
+                        <div class="carousel-slide"><img src="photos/Foto2.jpg" alt="Мероприятие"></div>
+                        <div class="carousel-slide"><img src="photos/Foto3.jpg" alt="Церемония"></div>
+                        <div class="carousel-slide"><img src="photos/Foto4.jpg" alt="Выезд"></div>
+                    </div>
+                </div>
+                <button class="carousel-arrow next" aria-label="Вперёд">❯</button>
+                <div class="carousel-dots"></div>
+            </div>
+            <div class="surf-to-gallery-wrap">
+                <a href="gallery.html" class="surf-btn">
+                    <span class="surf-icon">📷</span>
+                    <span class="surf-text">Открыть полную галерею</span>
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
+<footer>
+    <div class="footer-inner">
+        <div class="footer-logo-section">
+            <a href="index.html"><img src="photos/logo_vsks.png" alt="ВСКС"></a>
+            <a href="https://vsks.ru/" target="_blank" rel="noopener">
+                <img src="photos/logo_vsks2.png" alt="ВСКС" class="logo-circle">
+            </a>
+        </div>
+        <div class="footer-contacts">
+            <div class="footer-title">Контактная информация</div>
+            <p>г. Одинцово, Московская область<br>
+               <a href="mailto:info@vsks-odintsovo.ru" class="footer-contact-link">info@vsks-odintsovo.ru</a><br>
+                <a href="tel:+79779637166" class="footer-contact-link">+7 (977) 963-71-66</a>
+            </p>
+        </div>
+        <div class="footer-socnet">
+            <a href="https://vk.com/vsksmoro_odintsovo" class="footer-socbtn" target="_blank" aria-label="VK">VK</a>
+            <a href="https://t.me/odin_vsks" class="footer-socbtn" target="_blank" aria-label="Telegram">Telegram</a>
+        </div>
+    </div>
+    <div class="footer-down">
+        © Одинцовский отряд ВСКС, 2025
+    </div>
+</footer>
+
+<!-- Мобильная боковая панель -->
+<div class="mobile-sidebar" id="mobileSidebar">
+  <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+  <nav class="sidebar-menu">
+    <a href="index.html" class="sidebar-btn">Главная</a>
+    <a href="news.html" class="sidebar-btn">Новости</a>
+    <a href="gallery.html" class="sidebar-btn">Галерея</a>
+    <a href="profile.html" class="sidebar-btn">Профиль</a>
+    <a href="join.html" class="sidebar-btn">Вступить</a>
+  </nav>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    function setupCarousel(carouselId, interval = 4000) {
+        const carousel = document.getElementById(carouselId);
+        if (!carousel) return;
+        const track = carousel.querySelector('.carousel-track');
+        const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+        const prev = carousel.querySelector('.carousel-arrow.prev');
+        const next = carousel.querySelector('.carousel-arrow.next');
+        const dotsWrap = carousel.querySelector('.carousel-dots');
+        let current = 0;
+        let timeoutId = null;
+        let isTransitioning = false;
+        function update() {
+            if (isTransitioning) return;
+            isTransitioning = true;
+            track.style.transform = `translateX(-${current * 100}%)`;
+            dotsWrap.innerHTML = slides.map((_, i) =>
+                `<span class="dot${i === current ? ' active' : ''}" data-i="${i}"></span>`
+            ).join('');
+            setTimeout(() => { isTransitioning = false; }, 300);
+        }
+        function go(i) {
+            current = (i + slides.length) % slides.length;
+            update();
+            reset();
+        }
+        function nextSlide() { go(current + 1); }
+        function prevSlide() { go(current - 1); }
+        function reset() {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(nextSlide, interval);
+        }
+        if (dotsWrap) {
+            dotsWrap.onclick = e => {
+                if (e.target.classList.contains('dot')) {
+                    go(Number(e.target.dataset.i));
+                }
+            }
+        }
+        if (next) next.onclick = nextSlide;
+        if (prev) prev.onclick = prevSlide;
+        carousel.onmouseenter = () => clearTimeout(timeoutId);
+        carousel.onmouseleave = reset;
+        update();
+        reset();
+    }
+    setupCarousel('photoCarousel');
+});
+
+// Скрипт для авто-скрытия заголовка при прокрутке
+let lastScroll = 0;
+const mainHeader = document.getElementById('mainHeader');
+window.addEventListener('scroll', function() {
+  const currentScroll = window.pageYOffset;
+  if (currentScroll > lastScroll && currentScroll > 100) {
+    mainHeader.classList.add('hide-header');
+  } else {
+    mainHeader.classList.remove('hide-header');
   }
-  .mobile-sidebar.open {
-    width: 220px;
-    opacity: 1;
-  }
-  .sidebar-toggle {
-    position: fixed;
-    top: 18px;
-    right: 20px;
-    z-index: 12200;
-    background: #ffe000;
-    color: #0f2a5a;
-    font-size: 2.5em;
-    border: none;
-    border-radius: 14px;
-    padding: 9px 18px;
-    box-shadow: 0 4px 13px #133b7b18;
-    cursor: pointer;
-    transition: background 0.16s, transform 0.1s;
-  }
-  .sidebar-toggle:active,
-  .sidebar-toggle:hover {
-    background: #ff9500;
-    color: #fff;
-    transform: scale(1.07);
-  }
-  .sidebar-menu {
-    display: flex;
-    flex-direction: column;
-    margin-top: 70px;
-    gap: 22px;
-    align-items: flex-start;
-    padding: 25px 18px;
-  }
-  .sidebar-btn {
-    background: linear-gradient(90deg,#ffe000 60%,#fff6b0 120%);
-    color: #0f2a5a;
-    font-family: 'Montserrat',sans-serif;
-    font-weight: 700;
-    font-size: 1.22em;
-    border-radius: 17px;
-    padding: 11px 22px;
-    text-decoration: none;
-    transition: background 0.16s, color 0.16s, box-shadow 0.16s;
-    box-shadow: 0 3px 12px #ffe0002c;
-    margin-bottom: 4px;
-    margin-right: 0;
-  }
-  .sidebar-btn:hover {
-    background: linear-gradient(90deg,#ff9500 50%,#ffe000 100%);
-    color: #fff;
-    box-shadow: 0 8px 24px #ffe0004f;
-  }
-}
-@media (min-width: 769px) {
-  .mobile-sidebar,
-  .sidebar-toggle {
-    display: none !important;
-    opacity: 0;
-  }
-}
+  lastScroll = currentScroll;
+});
+
+// Мобильная боковая панель
+document.addEventListener("DOMContentLoaded", function() {
+  const sidebar = document.getElementById("mobileSidebar");
+  const toggle = document.getElementById("sidebarToggle");
+  if (!sidebar || !toggle) return;
+  toggle.addEventListener("click", function(e) {
+    sidebar.classList.toggle("open");
+    e.stopPropagation();
+  });
+  document.addEventListener("click", function(e) {
+    if (!sidebar.contains(e.target) && sidebar.classList.contains("open")) {
+      sidebar.classList.remove("open");
+    }
+  });
+  sidebar.querySelector('.sidebar-menu').addEventListener("click", function(e) {
+    e.stopPropagation();
+  });
+});
+</script>
+<script src="scripts/script.js"></script>
+</body>
+</html>
