@@ -1,16 +1,4 @@
-// scripts/script.js
-
-// --- Вспомогательные функции ---
-function showAlert(message, type = 'info') {
-    // type: 'info'|'error'|'success'
-    const alertBox = document.createElement('div');
-    alertBox.className = `alert alert-${type}`;
-    alertBox.textContent = message;
-    document.body.appendChild(alertBox);
-    setTimeout(() => alertBox.remove(), 3500);
-}
-
-// --- Авторизация и модальные окна ---
+// Авторизация, модальные окна
 function initAuthModals() {
     const btnLogin = document.getElementById('btnLogin');
     const btnRegister = document.getElementById('btnRegister');
@@ -18,20 +6,17 @@ function initAuthModals() {
     const modalLogin = document.getElementById('modalLogin');
     const modalRegister = document.getElementById('modalRegister');
     const modalForgot = document.getElementById('modalForgot');
-    const closeBtns = document.querySelectorAll('.modal .close-btn');
+    const closeLogin = document.getElementById('closeLogin');
+    const closeRegister = document.getElementById('closeRegister');
+    const closeForgot = document.getElementById('closeForgot');
     const linkToRegister = document.getElementById('linkToRegister');
     const linkToForgot = document.getElementById('linkToForgot');
-    const linkToLogin = document.getElementById('linkToLogin');
 
     if (btnLogin) btnLogin.addEventListener('click', () => modalLogin.classList.remove('hidden'));
     if (btnRegister) btnRegister.addEventListener('click', () => modalRegister.classList.remove('hidden'));
-
-    closeBtns.forEach(btn => {
-        btn.addEventListener('click', e => {
-            e.target.closest('.modal').classList.add('hidden');
-        });
-    });
-
+    if (closeLogin) closeLogin.addEventListener('click', () => modalLogin.classList.add('hidden'));
+    if (closeRegister) closeRegister.addEventListener('click', () => modalRegister.classList.add('hidden'));
+    if (closeForgot) closeForgot.addEventListener('click', () => modalForgot.classList.add('hidden'));
     if (linkToRegister) linkToRegister.addEventListener('click', e => {
         e.preventDefault();
         modalLogin.classList.add('hidden');
@@ -42,73 +27,61 @@ function initAuthModals() {
         modalLogin.classList.add('hidden');
         modalForgot.classList.remove('hidden');
     });
-    if (linkToLogin) linkToLogin.addEventListener('click', e => {
-        e.preventDefault();
-        modalRegister.classList.add('hidden');
-        modalLogin.classList.remove('hidden');
-    });
 
     const formLogin = document.getElementById('formLogin');
     const formRegister = document.getElementById('formRegister');
     const formForgot = document.getElementById('formForgot');
-    if (formLogin)
-        formLogin.addEventListener('submit', e => {
-            e.preventDefault();
-            const email = formLogin.loginEmail.value.trim();
-            const password = formLogin.loginPassword.value.trim();
-            if (email && password) {
-                // demo: replace with real authentication request
-                modalLogin.classList.add('hidden');
-                btnLogin && (btnLogin.style.display = 'none');
-                btnRegister && (btnRegister.style.display = 'none');
-                userMenu && userMenu.classList.remove('hidden');
-                const userName = document.getElementById('userName');
-                userName && (userName.textContent = email.split('@')[0]);
-                showAlert(`Успешный вход, ${email}`, 'success');
-                formLogin.reset();
-            } else {
-                showAlert('Введите email и пароль', 'error');
-            }
-        });
-    if (formRegister)
-        formRegister.addEventListener('submit', e => {
-            e.preventDefault();
-            const name = formRegister.registerName.value.trim();
-            const email = formRegister.registerEmail.value.trim();
-            const password = formRegister.registerPassword.value.trim();
-            if (name && email && password) {
-                // demo: replace with real registration request
-                modalRegister.classList.add('hidden');
-                showAlert('Регистрация прошла успешно, теперь войдите', 'success');
-                formRegister.reset();
-            } else {
-                showAlert('Пожалуйста заполните все поля', 'error');
-            }
-        });
-    if (formForgot)
-        formForgot.addEventListener('submit', e => {
-            e.preventDefault();
-            const email = formForgot.forgotEmail.value.trim();
-            if (email) {
-                // demo: replace with real password reset request
-                showAlert(`Ссылка для восстановления отправлена на ${email}`, 'info');
-                modalForgot.classList.add('hidden');
-                formForgot.reset();
-            } else {
-                showAlert('Введите email', 'error');
-            }
-        });
+    if (formLogin) formLogin.addEventListener('submit', e => {
+        e.preventDefault();
+        const email = formLogin.loginEmail.value.trim();
+        const password = formLogin.loginPassword.value.trim();
+        if (email && password) {
+            modalLogin.classList.add('hidden');
+            if (btnLogin) btnLogin.style.display = 'none';
+            if (btnRegister) btnRegister.style.display = 'none';
+            if (userMenu) userMenu.classList.remove('hidden');
+            const userName = document.getElementById('userName');
+            if (userName) userName.textContent = email.split('@')[0];
+            alert('Успешный вход, ' + email);
+            formLogin.reset();
+        } else {
+            alert('Введите email и пароль');
+        }
+    });
+    if (formRegister) formRegister.addEventListener('submit', e => {
+        e.preventDefault();
+        const name = formRegister.registerName.value.trim();
+        const email = formRegister.registerEmail.value.trim();
+        const password = formRegister.registerPassword.value.trim();
+        if (name && email && password) {
+            modalRegister.classList.add('hidden');
+            alert('Регистрация прошла успешно, теперь войдите');
+            formRegister.reset();
+        } else {
+            alert('Пожалуйста заполните все поля');
+        }
+    });
+    if (formForgot) formForgot.addEventListener('submit', e => {
+        e.preventDefault();
+        const email = formForgot.forgotEmail.value.trim();
+        if (email) {
+            alert('Ссылка для восстановления отправлена на ' + email);
+            modalForgot.classList.add('hidden');
+            formForgot.reset();
+        } else {
+            alert('Введите email');
+        }
+    });
     const btnLogout = document.getElementById('btnLogout');
-    if (btnLogout)
-        btnLogout.addEventListener('click', () => {
-            userMenu && userMenu.classList.add('hidden');
-            btnLogin && (btnLogin.style.display = 'inline-block');
-            btnRegister && (btnRegister.style.display = 'inline-block');
-            showAlert('Вы вышли из системы', 'info');
-        });
+    if (btnLogout) btnLogout.addEventListener('click', () => {
+        if (userMenu) userMenu.classList.add('hidden');
+        if (btnLogin) btnLogin.style.display = 'inline-block';
+        if (btnRegister) btnRegister.style.display = 'inline-block';
+        alert('Вы вышли из системы');
+    });
 }
 
-// --- Карусель главной страницы ---
+// Инициализация карусели на главной странице (если используется внешний скрипт, не дублировать)
 function setupCarousel(carouselId, interval = 4000) {
     const carousel = document.getElementById(carouselId);
     if (!carousel) return;
@@ -119,12 +92,17 @@ function setupCarousel(carouselId, interval = 4000) {
     const dotsWrap = carousel.querySelector('.carousel-dots');
     let current = 0;
     let timeoutId = null;
-
+    let isTransitioning = false;
     function update() {
+        if (isTransitioning) return;
+        isTransitioning = true;
         track.style.transform = `translateX(-${current * 100}%)`;
         dotsWrap.innerHTML = slides.map((_, i) =>
             `<span class="dot${i === current ? ' active' : ''}" data-i="${i}"></span>`
         ).join('');
+        setTimeout(() => {
+            isTransitioning = false;
+        }, 300);
     }
     function go(i) {
         current = (i + slides.length) % slides.length;
@@ -142,30 +120,29 @@ function setupCarousel(carouselId, interval = 4000) {
             if (e.target.classList.contains('dot')) {
                 go(Number(e.target.dataset.i));
             }
-        };
+        }
     }
-    next && (next.onclick = nextSlide);
-    prev && (prev.onclick = prevSlide);
-
+    if (next) next.onclick = nextSlide;
+    if (prev) prev.onclick = prevSlide;
     carousel.onmouseenter = () => clearTimeout(timeoutId);
     carousel.onmouseleave = reset;
     update();
     reset();
 }
 
-// --- Прокрутка карточек преимуществ ---
+// Переливающиеся карточки преимуществ (join.html)
 function setupBenefitsScroller() {
     const track = document.querySelector('.benefits-track');
     const prevBtn = document.querySelector('.scroller-arrow.prev');
     const nextBtn = document.querySelector('.scroller-arrow.next');
     if (track && prevBtn && nextBtn) {
         prevBtn.onclick = () => {
-            track.scrollBy({ left: -320, behavior: 'smooth' });
+            track.scrollBy({left: -320, behavior:'smooth'});
         };
         nextBtn.onclick = () => {
-            track.scrollBy({ left: 320, behavior: 'smooth' });
+            track.scrollBy({left: 320, behavior:'smooth'});
         };
-        // Drag-to-scroll
+        // Drag-to-scroll (свайп)
         let isDown = false, startX, scrollLeft;
         track.addEventListener('mousedown', (e) => {
             isDown = true;
@@ -201,8 +178,15 @@ function setupBenefitsScroller() {
     }
 }
 
-// --- Лайтбокс галереи с стрелками и клавиатурой ---
-function setupGalleryLightbox() {
+document.addEventListener('DOMContentLoaded', () => {
+    initAuthModals();
+    setupBenefitsScroller();
+    // Если на нужной странице, а не на всех запускать карусель:
+    if (document.getElementById('photoCarousel')) setupCarousel('photoCarousel');
+});
+
+// Лайтбокс галереи с стрелками и управлением с клавиатуры
+document.addEventListener('DOMContentLoaded', function () {
     const galleryGrid = document.querySelector('.gallery-grid');
     if (!galleryGrid) return;
     let images = Array.from(galleryGrid.querySelectorAll('img'));
@@ -221,6 +205,7 @@ function setupGalleryLightbox() {
         closeBtn.innerHTML = '×';
         closeBtn.onclick = () => document.body.removeChild(lightbox);
 
+        // Стрелки
         let prevBtn = document.createElement('button');
         prevBtn.className = 'lightbox-arrow lightbox-prev';
         prevBtn.innerHTML = '❮';
@@ -231,6 +216,7 @@ function setupGalleryLightbox() {
         nextBtn.innerHTML = '❯';
         nextBtn.onclick = function () { changeImg(1); };
 
+        // Разметка
         content.appendChild(img);
         content.appendChild(closeBtn);
         if (images.length > 1) {
@@ -246,6 +232,7 @@ function setupGalleryLightbox() {
             img.alt = images[currentIdx].alt;
         }
 
+        // Закрытие по фону и escape
         lightbox.onclick = e => { if (e.target === lightbox) document.body.removeChild(lightbox); };
         window.addEventListener('keydown', keyHandler);
 
@@ -255,19 +242,12 @@ function setupGalleryLightbox() {
             if (e.key === 'ArrowLeft' && images.length > 1) changeImg(-1);
             if (e.key === 'ArrowRight' && images.length > 1) changeImg(1);
         }
+
+        // Удаление обработчика после закрытия
         closeBtn.addEventListener('click', () => window.removeEventListener('keydown', keyHandler));
         lightbox.addEventListener('click', e => {
-            if (e.target === lightbox)
-                window.removeEventListener('keydown', keyHandler);
+            if (e.target === lightbox) window.removeEventListener('keydown', keyHandler);
         });
     }
     images.forEach((img, idx) => img.onclick = () => openLightbox(idx));
-}
-
-// --- Инициализация при загрузке ---
-document.addEventListener('DOMContentLoaded', () => {
-    initAuthModals();
-    setupBenefitsScroller();
-    if (document.getElementById('photoCarousel')) setupCarousel('photoCarousel');
-    setupGalleryLightbox();
 });
