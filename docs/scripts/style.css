@@ -600,3 +600,78 @@ footer {
   .btn, .btn-primary { font-size: 0.9em; min-width: 70px; padding: 8px 18px; }
   .application-section h2 { font-size: 1.4em; }
 }
+
+@media (max-width: 768px) {
+  .mobile-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(99deg,#0f2a5a 90%,#ffe000 130%);
+    box-shadow: -2px 0 32px #0f2a5a22;
+    z-index: 12000;
+    transition: width 0.23s cubic-bezier(.6,.1,.7,1.1), opacity 0.19s;
+    overflow: hidden;
+    opacity: 1;
+  }
+  .mobile-sidebar.open {
+    width: 220px;
+    opacity: 1;
+  }
+  .sidebar-toggle {
+    position: fixed;
+    top: 18px;
+    right: 20px;
+    z-index: 12200;
+    background: #ffe000;
+    color: #0f2a5a;
+    font-size: 2.5em;
+    border: none;
+    border-radius: 14px;
+    padding: 9px 18px;
+    box-shadow: 0 4px 13px #133b7b18;
+    cursor: pointer;
+    transition: background 0.16s, transform 0.1s;
+  }
+  .sidebar-toggle:active,
+  .sidebar-toggle:hover {
+    background: #ff9500;
+    color: #fff;
+    transform: scale(1.07);
+  }
+  .sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    margin-top: 70px;
+    gap: 22px;
+    align-items: flex-start;
+    padding: 25px 18px;
+  }
+  .sidebar-btn {
+    background: linear-gradient(90deg,#ffe000 60%,#fff6b0 120%);
+    color: #0f2a5a;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 700;
+    font-size: 1.22em;
+    border-radius: 17px;
+    padding: 11px 22px;
+    text-decoration: none;
+    transition: background 0.16s, color 0.16s, box-shadow 0.16s;
+    box-shadow: 0 3px 12px #ffe0002c;
+    margin-bottom: 4px;
+    margin-right: 0;
+  }
+  .sidebar-btn:hover {
+    background: linear-gradient(90deg,#ff9500 50%,#ffe000 100%);
+    color: #fff;
+    box-shadow: 0 8px 24px #ffe0004f;
+  }
+}
+@media (min-width: 769px) {
+  .mobile-sidebar,
+  .sidebar-toggle {
+    display: none !important;
+    opacity: 0;
+  }
+}
